@@ -1,6 +1,7 @@
 import math from './math'
 import {groupBy} from 'lodash/collection'
 import people from './people'
+import './styles/style.scss'
 
 const managerGroups = groupBy(people, 'manager')
 
