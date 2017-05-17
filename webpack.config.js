@@ -64,7 +64,10 @@ const config = {
     }),
 
     // 將檔案輸出成 css 檔
-    new ExtractTextPlugin('[name].css')
+    new ExtractTextPlugin('[name].css'),
+
+    // 知道在 hot module replacement 的情況下是誰被更新
+    new webpack.NamedModulesPlugin()
   ]
 }
 
