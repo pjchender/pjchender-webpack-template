@@ -22,6 +22,19 @@ const config = {
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+
+      // url loader (for image)
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 40000          /* 小於 40kB 的圖片轉成 base64 */
+            }
+          }
+        ]
       }
     ]
   }

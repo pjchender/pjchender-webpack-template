@@ -2,6 +2,7 @@ import math from './math'
 import {groupBy} from 'lodash/collection'
 import people from './people'
 import './styles/style.scss'
+import './image-viewer'
 
 const managerGroups = groupBy(people, 'manager')
 
