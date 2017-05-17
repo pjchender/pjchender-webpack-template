@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // 放入 package.json 中所有 dependency 的 module
@@ -26,10 +27,15 @@ const config = {
         use: 'babel-loader'
       },
 
-      // css-loader
+      // scss loader
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+        // use: [
+        //   'style-loader',
+        //   'css-loader',
+        //   'sass-loader'
+        // ]
       },
 
       // url loader (for image)
@@ -55,7 +61,10 @@ const config = {
     // 幫我們把 dist 中的 js 檔注入 html 當中
     new HtmlWebpackPlugin({
       template: './index.html'          // 以 index.html 這支檔案當作模版注入 html
-    })
+    }),
+
+    // 將檔案輸出成 css 檔
+    new ExtractTextPlugin('[name].css')
   ]
 }
 
