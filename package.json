@@ -1,0 +1,16 @@
+{
+  "name": "pjchender-webpack-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "PJCHENder",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^2.5.1"
+  }
+}
