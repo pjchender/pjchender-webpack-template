@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && webpack",
-    "dev": "npm run clean && webpack-dev-server --inline --hot"
+    "dev": "npm run clean && webpack-dev-server --inline --hot",
+    "deploy": "npm run clean && webpack -p"
   },
   "keywords": [],
   "author": "PJCHENder",
