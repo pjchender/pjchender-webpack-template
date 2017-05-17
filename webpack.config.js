@@ -11,11 +11,11 @@ const VENDOR_LIBS = ['lodash']
 const config = {
   entry: {
     bundle: './src/index.js',
-    vendor: VENDOR_LIBS            // 產生 vendor.js
+    vendor: VENDOR_LIBS                    // 產生 vendor.js
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'           // [name] 會被 entry 中的 key 換調
+    filename: '[name].[hash].js'           // [name] 會被 entry 中的 key 換調
     // publicPath: 'dist/'
   },
   module: {
