@@ -1,0 +1,12 @@
+// Put Custom Bootstrap Variables Here
+
+$red: tomato;
+$blue: steelblue;
+
+.text-red {
+  color: var(--red);
+}
+
+.text-blue {
+  color: var(--blue);
+}

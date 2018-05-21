@@ -1,10 +1,2 @@
-h1 {
-  color: steelblue;
-}
-
-
-#app {
-  h1 {
-    color: tomato;
-  }
-}
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';

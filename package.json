@@ -12,7 +12,12 @@
   "author": "PJCHENder",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.4"
+    "autoprefixer": "^8.5.0",
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.4",
+    "popper.js": "^1.14.3",
+    "postcss-loader": "^2.1.5"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.19",
