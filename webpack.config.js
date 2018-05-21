@@ -1,74 +1,35 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-// 放入 package.json 中所有 dependency 的 module
-const VENDOR_LIBS = ['lodash']
-
-
-const config = {
+module.exports = {
+  mode: 'development',
+  devServer: {
+    contentBase: './dist'
+  },
+  devtool: 'inline-source-map',
   entry: {
     bundle: './src/index.js',
-    vendor: VENDOR_LIBS                    // 產生 vendor.js
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].[hash].js'           // [name] 會被 entry 中的 key 換調
-    // publicPath: 'dist/'
+    filename: '[name].bundle.js' // [name] 會被 entry 中的 key 換調
   },
   module: {
     rules: [
-      // babel-loader
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader'
-      },
-
-      // scss loader
-      {
+        // process .scss files
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
-        // use: [
-        //   'style-loader',
-        //   'css-loader',
-        //   'sass-loader'
-        // ]
-      },
-
-      // url loader (for image)
-      {
-        test: /\.(jpe?g|png|gif|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 40000          /* 小於 40kB 的圖片轉成 base64 */
-            }
-          }
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
   plugins: [
-    // 避免 vendor 內的程式碼同時出現在 vendor.js 和 bundle.js 中
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
-    }),
-
-    // 幫我們把 dist 中的 js 檔注入 html 當中
+    new CleanWebpackPlugin(['dist']), // 清除 dist 的內容
     new HtmlWebpackPlugin({
-      template: './index.html'          // 以 index.html 這支檔案當作模版注入 html
+      template: './src/index.html' // 幫我們把 dist 中的 js 檔注入 html 當中
     }),
-
-    // 將檔案輸出成 css 檔
-    new ExtractTextPlugin('[name].css'),
-
-    // 知道在 hot module replacement 的情況下是誰被更新
-    new webpack.NamedModulesPlugin()
+    new webpack.optimize.SplitChunksPlugin()
   ]
 }
-
-module.exports = config
