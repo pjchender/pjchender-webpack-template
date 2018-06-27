@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -10,7 +11,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   entry: {
-    bundle: './src/index.js',
+    bundle: './src/index.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -30,6 +31,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html' // 幫我們把 dist 中的 js 檔注入 html 當中
     }),
-    new webpack.optimize.SplitChunksPlugin()
+    new webpack.optimize.SplitChunksPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: './src/vendor',
+        to: './vendor'
+      }
+    ])
   ]
-}
+};
