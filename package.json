@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack -p",
+    "dev": "NODE_ENV=development npx webpack --mode development",
+    "build": "NODE_ENV=production npx webpack --mode production",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open --inline"
   },
@@ -13,6 +14,9 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^8.5.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
     "bootstrap": "^4.1.1",
     "copy-webpack-plugin": "^4.5.1",
     "jquery": "^3.3.1",
@@ -21,6 +25,7 @@
     "postcss-loader": "^2.1.5"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.0.0-beta.54",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "file-loader": "^1.1.11",
