@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].bundle.js' // [name] 會被 entry 中的 key 換調
+    filename: '[name].bundle.js'          // [name] 會被 entry 中的 key 換調
   },
   module: {
     rules: [
@@ -32,10 +32,13 @@ module.exports = {
       },
       {
         // use babel
-        test: /\.js$/i,
-        exclude: /node_modules/i,
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       }
     ]
@@ -51,7 +54,12 @@ module.exports = {
       }
     }
   },
+  resolve: {
+    extensions: ['.js']
+  },
   plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(paths.dist), // 清除 dist 的內容
     new HtmlWebpackPlugin({             // 幫我們把 dist 中的 js 檔注入 html 當中
       template: path.join(paths.src, "index.html"),
