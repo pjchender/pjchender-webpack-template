@@ -1,20 +1,20 @@
 {
   "name": "pjchender-webpack-template",
-  "version": "1.0.0",
+  "version": "0.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development npx webpack --mode development",
     "build": "NODE_ENV=production npx webpack --mode production",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open --inline"
+    "start": "webpack-dev-server --color"
   },
   "keywords": [],
   "author": "PJCHENder",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.1.5",
     "babel-loader": "^8.0.2",
@@ -23,20 +23,22 @@
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.3",
     "node-sass": "^4.9.0",
     "postcss-loader": "^3.0.0",
     "precss": "^3.1.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
-    "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.7",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.9",
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "popper.js": "^1.14.3"
   }
 }
