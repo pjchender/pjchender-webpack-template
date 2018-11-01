@@ -13,9 +13,6 @@ const paths = {
 
 module.exports = {
   mode: devMode ? 'development' : 'production',
-  devServer: {
-    contentBase: './dist'
-  },
   devtool: 'inline-source-map',
   entry: {
     app: './src/index.js'
