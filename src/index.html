@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hello Webpack</title>
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <p class="text-red">Hello <span class="text-blue">Webpack</span></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hello Webpack</title>
+  </head>
+  <body>
+    <div class="container py-5">
+      <img data-target="dynamic-image" class="rounded mx-auto d-block" width="200">
+
+      <div class="row">
+        <div class="col">
+          <p class="text-red">Hello <span class="text-blue">Webpack</span></p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="alert alert-primary" role="alert">
-          This is a primary alert—check it out!
+      <div class="row">
+        <div class="col">
+          <div class="alert alert-primary" role="alert">
+            This is a primary alert—check it out!
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Tooltip on bottom"
+          >
+            Tooltip on bottom
+          </button>
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
-          Tooltip on bottom
-        </button>
-      </div>
-    </div>
-  </div>
-</body>
+  </body>
 </html>

@@ -17,10 +17,10 @@ tags:
 
 ```bash
 $ npx webpack
-$ npx webpack --config webpack.config.js	# default is webpack.config.js
-$ npx webpack -p							# build in production
-$ npx webpack-dev-server --open				# run in dev-server
-$ npm run build -- --mode production --display-used-exports	# 顯示有用到的 exports
+$ npx webpack --config webpack.config.js  # default is webpack.config.js
+$ npx webpack -p              # build in production
+$ npx webpack-dev-server --open        # run in dev-server
+$ npm run build -- --mode production --display-used-exports  # 顯示有用到的 exports
 ```
 
 > [[檔案] PJCHENder-webpack-template](https://github.com/PJCHENder/pjchender-webpack-template) @ github
@@ -150,7 +150,7 @@ $ npx webpack
 
 ##### keywords: `style-loader`, `css-loader`, `sass-loader`, `node-sass`
 
-- 不需要使用 SASS：只時要打包 CSS 檔案的話，只需透過 `style-loader` 和 `css-loader`，做法可參考 [Asset Management - Loading CSS](https://webpack.js.org/guides/asset-management/#loading-css) @ Webpack Guide，如此 webpack 會在該頁面將特定的 CSS 灌入 `<head></heade>` 內。
+- 不需要使用 SASS：只時要打包 CSS 檔案的話，只需透過 `style-loader` 和 `css-loader`，做法可參考 [Asset Management - Loading CSS](https://webpack.js.org/guides/asset-management/#loading-css) @ Webpack Guide，如此 webpack 會在該頁面將特定的 CSS 灌入 `<head></head>` 內。
 - 需要使用 SASS ：則須再透過 `sass-loader` 和 `node-sass`。
 
 > - 需要安裝 **file-loader** 並進行相關設定後才能處理圖片資源。
@@ -524,7 +524,7 @@ module.exports = {
 {
   "scripts": {
     // ...
-	"start": "webpack-dev-server --open",
+  "start": "webpack-dev-server --open",
     // "dev": "webpack-dev-server --inline --hot",
   }
 }
@@ -679,10 +679,10 @@ module.exports = merge(common, {
 除了在設定檔中設定 `mode: production` 以及上面所說的設定外，也可以用指令的方式，但還是建議放在設定檔比較清楚：
 
 ```bash
-$ npx webpack -p				# 等同於 --optimize-minimize --define
+$ npx webpack -p        # 等同於 --optimize-minimize --define
 
-$ npx webpack --optimize-minimize 							# 會自動套用 UglifyJSPlugin
-$ npx webpack --define process.env.NODE_ENV="'production'"	# 等同於使用 DefinePlugin
+$ npx webpack --optimize-minimize               # 會自動套用 UglifyJSPlugin
+$ npx webpack --define process.env.NODE_ENV="'production'"  # 等同於使用 DefinePlugin
 ```
 
 ## 代碼分離（Code Splitting）
