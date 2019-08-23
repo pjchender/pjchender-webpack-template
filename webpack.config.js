@@ -136,8 +136,8 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: './src/vendor',
-        to: './vendor',
+        from: path.resolve(__dirname, 'src/vendor'),
+        to: path.resolve(__dirname, 'dist/vendor'),
       },
     ]),
   ],
