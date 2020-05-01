@@ -3,22 +3,17 @@ module.exports = {
     browser: true,
     commonjs: true,
     es6: true,
-    node: true,
   },
-  extends: ['eslint:recommended'],
-  plugins: ['jsx-a11y', 'import'],
-  rules: {
-    'no-console': 'off',
-    // 'no-console': ['error', { allow: ['warn', 'error'] }],
-  },
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    sourceType: 'module',
-  },
+  extends: [
+    'airbnb-base',
+  ],
   globals: {
-    chrome: 'readonly',
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parserOptions: {
+    ecmaVersion: 2018,
+  },
+  rules: {
   },
 };
