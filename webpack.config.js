@@ -40,32 +40,16 @@ module.exports = {
       },
       // 使用 Babel
       {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  useBuiltIns: 'entry',
-                  corejs: '3',
-                  targets: '> 0.25%, not dead',
-                },
-              ],
-            ], // End of presets
-            plugins: [
-              [
-                '@babel/plugin-transform-runtime',
-                {
-                  corejs: '3',
-                },
-              ],
-            ], // End of plugins
-          }, // End of options
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-transform-runtime'],
+          },
         },
-      }, // End of Babel
+      }, // End of 使用 Babel
       // 處理檔案
       {
         test: /\.(jpg|jpeg|png|gif|tiff|ico|svg|eot|otf|ttf|woff|woff2)$/i,

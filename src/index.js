@@ -11,6 +11,7 @@ $(function () {
   img.src = midImage;
 
   fetchData().then((data) => {
-    console.log('response', data);
+    const { userId, id, title } = data;
+    console.log('response', { ...data, newTitle: `new ${data?.title}` });
   });
 });
