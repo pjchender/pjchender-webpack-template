@@ -62,3 +62,6 @@ dist
 
 # Editor
 .vscode
+
+# Other
+.DS_Store
