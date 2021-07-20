@@ -4,7 +4,7 @@
 
 - [x] integrate conventional commit
 - [x] migrate to webpack5
-- [ ] integrate React
+- [x] integrate React
 - [ ] modify eslint config
 - [ ] check lint with husky
 

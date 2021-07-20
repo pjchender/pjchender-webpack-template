@@ -2,6 +2,9 @@ import './styles/application.scss';
 
 import midImage from '@/assets/mid.jpeg';
 import { fetchData, tooltipsInitialization } from '@/javascript/utils';
+import App from '@/components/App';
+import ReactDOM from 'react-dom';
+import React from 'react';
 
 (function () {
   tooltipsInitialization();
@@ -9,7 +12,9 @@ import { fetchData, tooltipsInitialization } from '@/javascript/utils';
   img.src = midImage;
 
   fetchData().then((data) => {
-    const { userId, id, title } = data;
     console.log('response', { ...data, newTitle: `new ${data?.title}` });
   });
+
+  // eslint-disable-next-line react/jsx-filename-extension
+  ReactDOM.render(<App />, document.getElementById('app'));
 })();

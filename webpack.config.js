@@ -43,7 +43,7 @@ module.exports = {
       },
       // 處理 JS 檔案
       {
-        test: /\.js$/i,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         use: ['babel-loader'],
       },
