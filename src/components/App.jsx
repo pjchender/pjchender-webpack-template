@@ -12,7 +12,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    fetchData().then((data) => {
+    fetchData().then(data => {
       setTodo(data);
     });
   }, []);

@@ -11,5 +11,5 @@ export const tooltipsInitialization = () => {
     document.querySelectorAll('[data-bs-toggle="tooltip"]')
   );
 
-  tooltipTriggerList.map((tooltipTriggerEl) => new Tooltip(tooltipTriggerEl));
+  tooltipTriggerList.map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
 };

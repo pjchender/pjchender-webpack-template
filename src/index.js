@@ -1,17 +1,17 @@
 import './styles/application.scss';
 
-import midImage from '@/assets/mid.jpeg';
-import { fetchData, tooltipsInitialization } from '@/javascript/utils';
-import App from '@/components/App';
 import ReactDOM from 'react-dom';
-import React from 'react';
+
+import midImage from '@/assets/mid.jpeg';
+import App from '@/components/App';
+import { fetchData, tooltipsInitialization } from '@/javascript/utils';
 
 (function () {
   tooltipsInitialization();
   const img = document.querySelector('[data-target="dynamic-image"]');
   img.src = midImage;
 
-  fetchData().then((data) => {
+  fetchData().then(data => {
     console.log('response', { ...data, newTitle: `new ${data?.title}` });
   });
 

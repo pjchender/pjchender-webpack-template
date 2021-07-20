@@ -5,8 +5,8 @@
 - [x] integrate conventional commit
 - [x] migrate to webpack5
 - [x] integrate React
-- [ ] modify eslint config
-- [ ] check lint with husky
+- [x] modify eslint config
+- [x] check lint with husky
 
 ## 說明
 
