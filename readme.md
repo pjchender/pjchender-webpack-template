@@ -1,5 +1,13 @@
 # PJCHENder Webpack Template
 
+## TODO
+
+- [x] integrate conventional commit
+- [x] migrate to webpack5
+- [ ] integrate React
+- [ ] modify eslint config
+- [ ] check lint with husky
+
 ## 說明
 
 此專案為 Webpack 起手的專案架構，在此架構中可以編譯 SCSS、與 ES6+ 的 JavaScript 檔案。

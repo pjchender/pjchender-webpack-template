@@ -1,12 +1,10 @@
 import './styles/application.scss';
-import 'bootstrap';
-import $ from 'jquery';
+
 import midImage from '@/assets/mid.jpeg';
-import { fetchData } from '@/javascript/utils';
+import { fetchData, tooltipsInitialization } from '@/javascript/utils';
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-
+(function () {
+  tooltipsInitialization();
   const img = document.querySelector('[data-target="dynamic-image"]');
   img.src = midImage;
 
@@ -14,4 +12,4 @@ $(function () {
     const { userId, id, title } = data;
     console.log('response', { ...data, newTitle: `new ${data?.title}` });
   });
-});
+})();

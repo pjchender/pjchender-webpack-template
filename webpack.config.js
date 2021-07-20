@@ -1,10 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production';
 const paths = {
@@ -12,9 +11,12 @@ const paths = {
   dist: path.join(__dirname, 'dist'),
 };
 
+// eslint-disable-next-line no-console
+console.log(`Building for ${devMode ? 'development' : 'production'}...`);
+
 module.exports = {
   mode: devMode ? 'development' : 'production',
-  devtool: 'inline-source-map',
+  devtool: devMode ? 'inline-source-map' : 'source-map',
   entry: {
     app: './src/index.js',
   },
@@ -23,46 +25,38 @@ module.exports = {
     filename: devMode ? 'js/[name].bundle.js' : 'js/[name].[hash].bundle.js',
     path: path.dist,
     publicPath: '/',
+    clean: true,
   },
   module: {
     rules: [
       // 處理 SASS 檔案
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.(sa|sc|c)ss$/i,
         use: [
           // 如果希望開發環境就打包出 CSS 檔案，
           // 可以直接使用 MiniCssExtractPlugin.loader，但可能會沒有 HMR
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          // 'postcss-loader',
-          'sass-loader',
+          { loader: 'css-loader', options: { sourceMap: true } },
+          'postcss-loader',
+          { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
-      // 使用 Babel
+      // 處理 JS 檔案
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-transform-runtime'],
-          },
-        },
-      }, // End of 使用 Babel
-      // 處理檔案
+        test: /\.js$/i,
+        exclude: /(node_modules)/,
+        use: ['babel-loader'],
+      },
+      // 處理圖檔
       {
-        test: /\.(jpg|jpeg|png|gif|tiff|ico|svg|eot|otf|ttf|woff|woff2)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              context: path.resolve(__dirname, 'src'),
-              name: '[path][name].[ext]?[hash]',
-            },
-          },
-        ],
-      }, // End of file loader
+        test: /\.(png|svg|jpg|jpeg|gif|ico|tiff)$/i,
+        type: 'asset',
+      },
+      // 處理文字檔
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
     ],
   },
   optimization: {
@@ -81,6 +75,18 @@ module.exports = {
     runtimeChunk: {
       name: 'runtime',
     },
+    minimizer: [
+      new CssMinimizerPlugin({
+        minimizerOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+            },
+          ],
+        },
+      }),
+    ],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -90,9 +96,8 @@ module.exports = {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new webpack.HashedModuleIdsPlugin(), // 避免所有的檔案 hash 都改變
+    new webpack.ids.HashedModuleIdsPlugin(), // 避免所有的檔案 hash 都改變
     new webpack.HotModuleReplacementPlugin(),
-    new CleanWebpackPlugin(), // 清除 dist 的內容
     new HtmlWebpackPlugin({
       // 幫我們把 dist 中的 js 檔注入 html 當中
       template: path.join(paths.src, 'index.html'),
@@ -100,30 +105,24 @@ module.exports = {
       inject: true,
       hash: false,
       minify: {
-        removeComments: devMode ? false : true,
-        collapseWhitespace: devMode ? false : true,
-        minifyJS: devMode ? false : true,
-        minifyCSS: devMode ? false : true,
+        removeComments: !devMode,
+        collapseWhitespace: !devMode,
+        minifyJS: !devMode,
+        minifyCSS: !devMode,
       },
     }),
     // 把所有的 SCSS 打包成一支單檔
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].css?[hash]',
     }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.optimize\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorPluginOptions: {
-        preset: ['default', { discardComments: { removeAll: true } }],
-      },
-      canPrint: true,
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/vendor'),
+          to: path.resolve(__dirname, 'dist/vendor'),
+        },
+      ],
     }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, 'src/vendor'),
-        to: path.resolve(__dirname, 'dist/vendor'),
-      },
-    ]),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
