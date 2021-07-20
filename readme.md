@@ -28,4 +28,4 @@ $ python -m SimpleHTTPServer
 
 ## Webpack 相關設定
 
-Webpack 相關設定說明可參考 [Webpack 學習筆記（Webpack Note）](https://pjchender.github.io/2018/05/17/webpack-%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98%EF%BC%88webpack-note%EF%BC%89/)
+Webpack 相關設定說明可參考 [Webpack 學習筆記（Webpack Note）](https://pjchender.dev/webpack/note-webpack/)
