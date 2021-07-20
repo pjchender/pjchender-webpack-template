@@ -1,12 +1,4 @@
-# PJCHENder Webpack Template
-
-## TODO
-
-- [x] integrate conventional commit
-- [x] migrate to webpack5
-- [x] integrate React
-- [x] modify eslint config
-- [x] check lint with husky
+# PJCHENder Webpack 5 Template
 
 ## 說明
 
@@ -17,7 +9,7 @@
 ### 開發環境
 
 ```bash
-$ npm run start         # 開發環境 localhost:8080
+$ npm run dev         # 開發環境 localhost:8080
 ```
 
 接著進到 [localhost:8080](http://localhost:8080) 即可。
@@ -27,7 +19,7 @@ $ npm run start         # 開發環境 localhost:8080
 若要啟動打包好的專案，需要啟用測試伺服器：
 
 ```bash
-$ npm run build:prod    # 打包專案
+$ npm run build    # 打包專案
 $ cd dist
 $ python -m SimpleHTTPServer
 ```
